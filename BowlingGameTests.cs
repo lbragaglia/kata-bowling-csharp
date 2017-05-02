@@ -46,14 +46,14 @@ namespace kata_bowling_csharp
             var score = 0;
             var i = 0;
             var currentFrame = 1;
-            while (i < _rolls.Length && currentFrame <= 10)
+            while (i < _rolls.Length && currentFrame++ <= 10)
             {
-                score += GetScoreOfFrameStartingAtAndMoveToNext(ref i, currentFrame++);
+                score += GetScoreOfFrameStartingAtAndMoveToNext(ref i);
             }
             return score;
         }
 
-        private int GetScoreOfFrameStartingAtAndMoveToNext(ref int i, int currentFrame)
+        private int GetScoreOfFrameStartingAtAndMoveToNext(ref int i)
         {
             if (IsStrike(i))
             {
@@ -79,7 +79,7 @@ namespace kata_bowling_csharp
             return (_rolls[i] + _rolls[i + 1]) == 10;
         }
 
-        internal void Rolls(params int[] rolls)
+        public void Rolls(params int[] rolls)
         {
             _rolls = rolls;
         }
