@@ -37,19 +37,11 @@ namespace kata_bowling_csharp
     {
         private int[] _rolls;
 
-        public BowlingGame()
-        {
-        }
-
         public int Score()
         {
             var score = 0;
-            var i = 0;
-            var currentFrame = 1;
-            while (i < _rolls.Length && currentFrame++ <= 10)
-            {
+            for (int i = 0, currentFrame = 1; currentFrame <= 10; currentFrame += 1)
                 score += GetScoreOfFrameStartingAtAndMoveToNext(ref i);
-            }
             return score;
         }
 
@@ -69,15 +61,9 @@ namespace kata_bowling_csharp
             return _rolls[i - 2] + _rolls[i - 1];
         }
 
-        private bool IsStrike(int i)
-        {
-            return _rolls[i] == 10;
-        }
+        private bool IsStrike(int i) => _rolls[i] == 10;
 
-        private bool IsSpare(int i)
-        {
-            return (_rolls[i] + _rolls[i + 1]) == 10;
-        }
+        private bool IsSpare(int i) => (_rolls[i] + _rolls[i + 1]) == 10;
 
         public void Rolls(params int[] rolls)
         {
